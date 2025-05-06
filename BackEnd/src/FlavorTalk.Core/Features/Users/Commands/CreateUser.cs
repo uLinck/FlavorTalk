@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FlavorTalk.Domain;
-using FlavorTalk.Infrastructure.Data;
+﻿using FlavorTalk.Domain;
 using FluentResults;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;

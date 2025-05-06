@@ -1,10 +1,8 @@
 ﻿using FlavorTalk.Core.Features.Users.Commands;
 using FlavorTalk.Core.Features.Users.Queries;
-using FlavorTalk.Domain;
 using FluentResults;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Wolverine;
 

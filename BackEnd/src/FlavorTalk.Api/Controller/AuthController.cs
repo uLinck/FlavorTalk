@@ -8,7 +8,7 @@ namespace FlavorTalk.Api.Controller;
 
 public class AuthController : BaseController
 {
-    public AuthController(IMessageBus bus) : base(bus) {}
+    public AuthController(IMessageBus bus) : base(bus) { }
 
     [HttpPost("SignIn")]
     public async Task<ActionResult<Result>> SignInAsync(SignIn.Command command)

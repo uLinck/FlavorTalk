@@ -4,13 +4,6 @@ using FluentResults;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FlavorTalk.Core.Features.Auth.Commands;
 public static class SignIn
@@ -29,9 +22,9 @@ public static class SignIn
 
     public class Handler
     {
-        public static async Task<Result> Handle(Command command, 
-            UserManager<User> userManager, 
-            SignInManager<User> signInManager, 
+        public static async Task<Result> Handle(Command command,
+            UserManager<User> userManager,
+            SignInManager<User> signInManager,
             IOptions<AppSettings> options)
         {
             var user = await userManager.FindByEmailAsync(command.Email);
