@@ -1,4 +1,5 @@
 ﻿using FlavorTalk.Domain;
+using FlavorTalk.Domain.Resources;
 using FlavorTalk.Shared;
 using FluentResults;
 using FluentValidation;
@@ -28,10 +29,10 @@ public static class SignIn
             IOptions<AppSettings> options)
         {
             var user = await userManager.FindByEmailAsync(command.Email);
-            if (user is null) return Result.Fail("User not found");
+            if (user is null) return Result.Fail(AuthError.UserNotFound);
 
             var result = await signInManager.PasswordSignInAsync(user, command.Password, command.RememberMe, false);
-            if (!result.Succeeded) return Result.Fail("Could not SignIn. Email or Password is incorrect.");
+            if (!result.Succeeded) return Result.Fail(AuthError.CouldNotSignIn);
 
             return Result.Ok();
         }

@@ -3,6 +3,7 @@ using FlavorTalk.Shared;
 using FluentResults;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
+using FlavorTalk.Domain.Resources;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -34,10 +35,10 @@ public static class GenerateToken
             IOptions<AppSettings> options)
         {
             var user = await userManager.FindByEmailAsync(command.Email);
-            if (user is null) return Result.Fail("User not found");
+            if (user is null) return Result.Fail(AuthError.UserNotFound);
 
             var result = await signInManager.PasswordSignInAsync(user, command.Password, false, false);
-            if (!result.Succeeded) return Result.Fail("Could not SignIn. Email or Password is incorrect.");
+            if (!result.Succeeded) return Result.Fail(AuthError.CouldNotSignIn);
 
             var token = GenerateJwtToken(options.Value);
 

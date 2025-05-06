@@ -31,19 +31,26 @@ public static class CreateUser
         public static async Task<Result<Response>> Handle(Command command, UserManager<User> userManager)
         {
             var user = new User(command.Name, command.Email);
-            var res = await userManager.CreateAsync(user);
+            var result = await userManager.CreateAsync(user);
 
-            if (!res.Succeeded)
-                return Result.Fail(res.Errors.Select(x => x.Description));
+            if (!result.Succeeded)
+                return Fail(result);
 
-            res = await userManager.AddPasswordAsync(user, command.Password);
-            if (!res.Succeeded)
-                return Result.Fail(res.Errors.Select(x => x.Description));
+            result = await userManager.AddPasswordAsync(user, command.Password);
+
+            if (!result.Succeeded)
+                return Fail(result);
 
             var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
-            await userManager.ConfirmEmailAsync(user, token);
+            var confirmResult = await userManager.ConfirmEmailAsync(user, token);
+
+            if (!confirmResult.Succeeded)
+                return Fail(confirmResult);
 
             return Result.Ok(new Response(user.Id, command.Name, command.Email));
         }
+
+        private static Result<Response> Fail(IdentityResult result) =>
+            Result.Fail(result.Errors.Select(x => x.Description));
     }
 }
