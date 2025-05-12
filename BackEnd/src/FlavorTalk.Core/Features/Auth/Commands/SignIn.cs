@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 namespace FlavorTalk.Core.Features.Auth.Commands;
 public static class SignIn
 {
-    public record Command(string Email, string Password, bool RememberMe)
+    public record Command(string Email, string Password, bool RememberMe) 
     {
         public class Validator : AbstractValidator<Command>
         {

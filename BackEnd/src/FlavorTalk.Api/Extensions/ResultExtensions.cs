@@ -1,4 +1,6 @@
-﻿using FluentResults;
+﻿using FlavorTalk.Shared;
+using FluentResults;
+using Wolverine;
 
 namespace FlavorTalk.Api.Extensions;
 
