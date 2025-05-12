@@ -1,16 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FlavorTalk.Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using FlavorTalk.Domain;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlavorTalk.Infrastructure.Data;
 
-public class FlavorTalkContext : IdentityDbContext<User, Role, Guid> 
+public class FlavorTalkContext : IdentityDbContext<User, Role, Guid>
 {
     public FlavorTalkContext(DbContextOptions options) : base(options)
     {

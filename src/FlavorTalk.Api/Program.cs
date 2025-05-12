@@ -1,5 +1,4 @@
 using FlavorTalk.Api.Configs;
-using FlavorTalk.Domain;
 using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
