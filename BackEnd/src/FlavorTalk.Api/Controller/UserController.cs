@@ -11,7 +11,7 @@ namespace FlavorTalk.Api.Controller;
 public class UserController(IMessageBus bus) : BaseController(bus)
 {
     [HttpPost]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateUser.Command command)
+    public async Task<ActionResult> CreateAsync([FromBody] CreateUser.Command command)
     {
         try
         {

@@ -1,12 +1,14 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using FlavorTalk.Api.Configs.Filters;
+using Microsoft.OpenApi.Models;
 
 namespace FlavorTalk.Api.Configs;
 
-public static class SwaggerConfigs
+public static class ControllerConfigs
 {
-    public static WebApplicationBuilder AddSwaggerConfigs(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder AddControllerConfigs(this WebApplicationBuilder builder)
     {
-        builder.Services.AddControllers();
+        builder.Services.AddControllers(options => options.Filters.Add<HttpResponseFilter>());
+
         builder.Services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "FlavorTalk API", Version = "v1" });
