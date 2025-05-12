@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "KBQh7c+FYrDpwT4pNzXGqeXoYgSk2wQXsdWfRLu5WP8=",
+  "Source": "FlavorTalk.Api",
+  "BasePath": "_content/FlavorTalk.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

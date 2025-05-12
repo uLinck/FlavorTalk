@@ -1,0 +1,90 @@
+[
+  {
+    "ContainingType": "FlavorTalk.Api.Controller.AuthController",
+    "Method": "GenerateTokenAsync",
+    "RelativePath": "api/v1/Auth/GenerateToken",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "FlavorTalk.Core.Features.Auth.Commands.GenerateToken\u002BCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FlavorTalk.Core.Features.Auth.Commands.GenerateToken\u002BResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FlavorTalk.Api.Controller.AuthController",
+    "Method": "SignInAsync",
+    "RelativePath": "api/v1/Auth/SignIn",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "FlavorTalk.Core.Features.Auth.Commands.SignIn\u002BCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FlavorTalk.Core.Features.Auth.Commands.SignIn\u002BResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FlavorTalk.Api.Controller.UserController",
+    "Method": "CreateAsync",
+    "RelativePath": "api/v1/User",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "FlavorTalk.Core.Features.Users.Commands.CreateUser\u002BCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FlavorTalk.Api.Controller.UserController",
+    "Method": "GetAllUsersAsync",
+    "RelativePath": "api/v1/User",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[FlavorTalk.Core.Features.Users.Queries.GetAllUsers\u002BResponse, FlavorTalk.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

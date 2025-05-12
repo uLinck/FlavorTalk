@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\FlavorTalk.Api.props" />
+</Project>
