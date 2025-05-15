@@ -1,8 +1,5 @@
 ﻿using FlavorTalk.Api.Extensions;
 using FlavorTalk.Core.Features.Auth.Commands;
-using FlavorTalk.Domain;
-using FluentResults;
-using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Wolverine;
 

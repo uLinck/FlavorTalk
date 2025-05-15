@@ -1,8 +1,6 @@
-﻿using FlavorTalk.Core.Features.Users.Commands;
-using FlavorTalk.Core.Features.Users.Queries;
+﻿using FlavorTalk.Api.Extensions;
+using FlavorTalk.Core.Features.Users.Commands;
 using FluentResults;
-using FluentValidation;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Wolverine;
 
@@ -13,24 +11,11 @@ public class UserController(IMessageBus bus) : BaseController(bus)
     [HttpPost]
     public async Task<ActionResult> CreateAsync([FromBody] CreateUser.Command command)
     {
-        try
-        {
-            var result = await Bus.InvokeAsync<Result<CreateUser.Response>>(command);
-            if (result.IsFailed)
-                return BadRequest(result);
-            return Ok(result.Value);
-        }
-        catch (ValidationException e)
-        {
-            return BadRequest(e.Errors.Select(e => e.ErrorMessage));
-        }
-    }
+        var result = await Bus.SendAsync<Result<CreateUser.Response>>(command);
 
-    [HttpGet]
-    [Authorize]
-    public async Task<ActionResult<List<GetAllUsers.Response>>> GetAllUsersAsync()
-    {
-        var result = await Bus.InvokeAsync<List<GetAllUsers.Response>>(new GetAllUsers.Query());
-        return Ok(result);
+        if (result.IsFailed)
+            return BadRequest(result);
+
+        return Ok(result.Value);
     }
 }
