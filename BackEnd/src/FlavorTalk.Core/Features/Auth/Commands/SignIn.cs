@@ -1,4 +1,4 @@
-﻿using FlavorTalk.Domain;
+﻿using FlavorTalk.Domain.Entities;
 using FlavorTalk.Domain.Resources;
 using FluentResults;
 using FluentValidation;

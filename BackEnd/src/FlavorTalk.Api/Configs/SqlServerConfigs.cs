@@ -11,7 +11,8 @@ public static class SqlServerConfigs
 {
     public static WebApplicationBuilder AddDatabaseRelatedConfigs(this WebApplicationBuilder builder)
     {
-        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new ArgumentNullException("Esqueceu de configurar a porra dos Secrets >:(");
+        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+            ?? throw new ArgumentNullException("Esqueceu de configurar a porra dos Secrets >:(");
 
         builder.Services.AddDbContext<FlavorTalkContext>(options => options.UseSqlServer(connectionString, options => options.MigrationsAssembly("FlavorTalk.Infrastructure")), ServiceLifetime.Singleton);
 
