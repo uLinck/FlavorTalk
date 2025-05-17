@@ -1,4 +1,5 @@
-﻿using FlavorTalk.Domain;
+﻿using FlavorTalk.Domain.Entities;
+using FlavorTalk.Shared.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -28,5 +29,16 @@ public class FlavorTalkContext : IdentityDbContext<User, Role, Guid>
         modelBuilder.Entity<IdentityUserLogin<Guid>>(entity => entity.ToTable("UserLogins"));
         modelBuilder.Entity<IdentityUserToken<Guid>>(entity => entity.ToTable("UserTokens"));
         modelBuilder.Entity<IdentityRoleClaim<Guid>>(entity => entity.ToTable("RoleClaims"));
+
+        modelBuilder.Model.GetEntityTypes()
+            .Select(t => t.ClrType)
+            .Where(t => t.IsSubclassOf(typeof(Entity)))
+            .ForEach(sde =>
+            {
+                modelBuilder.Entity(sde)
+                    .HasKey(nameof(Entity.Id));
+            });
     }
+
+
 }

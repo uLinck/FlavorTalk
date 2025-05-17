@@ -1,5 +1,4 @@
-﻿using FlavorTalk.Domain;
-using FlavorTalk.Shared;
+﻿using FlavorTalk.Shared;
 using FluentResults;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
@@ -8,6 +7,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using FlavorTalk.Domain.Entities;
 
 namespace FlavorTalk.Core.Features.Auth.Commands;
 public static class GenerateToken

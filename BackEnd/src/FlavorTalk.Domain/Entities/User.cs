@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace FlavorTalk.Domain;
-public class User : IdentityUser<Guid>
+namespace FlavorTalk.Domain.Entities;
+public class User : UserBaseEntity
 {
     public string Name { get; set; }
 
-#pragma warning disable CS8618
+    #pragma warning disable CS8618
     protected User() { }
 
     public User(string name, string email)
@@ -15,6 +15,7 @@ public class User : IdentityUser<Guid>
         Email = email;
     }
 }
+
 public class Role : IdentityRole<Guid>
 {
     protected Role() { }

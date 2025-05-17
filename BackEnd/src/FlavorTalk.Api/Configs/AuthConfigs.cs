@@ -1,4 +1,4 @@
-﻿using FlavorTalk.Domain;
+﻿using FlavorTalk.Domain.Entities;
 using FlavorTalk.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 
