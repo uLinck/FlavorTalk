@@ -1,4 +1,4 @@
-﻿using FlavorTalk.Domain;
+﻿using FlavorTalk.Domain.Entities;
 using FluentResults;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
