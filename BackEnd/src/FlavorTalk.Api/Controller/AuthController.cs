@@ -20,6 +20,17 @@ public class AuthController : BaseController
         return Ok(result);
     }
 
+    [HttpPost("SignUp")]
+    public async Task<ActionResult<SignUp.Response>> SignUpAsync(SignUp.Command command)
+    {
+        var result = await Bus.SendAsync<SignUp.Response>(command);
+
+        if (result.IsFailed)
+            return BadRequest(result);
+
+        return Ok(result);
+    }
+
     [HttpPost("GenerateToken")]
     public async Task<ActionResult<GenerateToken.Response>> GenerateTokenAsync(GenerateToken.Command command)
     {

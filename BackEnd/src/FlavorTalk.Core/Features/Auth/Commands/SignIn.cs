@@ -19,7 +19,7 @@ public static class SignIn
         }
     }
 
-    public record Response(Guid Id, string Name, string? Email);
+    public record Response(Guid UserId, string Name, string? Email);
 
     public class Handler
     {

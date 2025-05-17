@@ -16,6 +16,10 @@ public class FlavorTalkContext : IdentityDbContext<User, Role, Guid>
     {
     }
 
+    public DbSet<Catalog> Catalogs { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Plate> Plates { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -32,11 +36,11 @@ public class FlavorTalkContext : IdentityDbContext<User, Role, Guid>
 
         modelBuilder.Model.GetEntityTypes()
             .Select(t => t.ClrType)
-            .Where(t => t.IsSubclassOf(typeof(Entity)))
+            .Where(t => t.IsSubclassOf(typeof(BaseEntity)))
             .ForEach(sde =>
             {
                 modelBuilder.Entity(sde)
-                    .HasKey(nameof(Entity.Id));
+                    .HasKey(nameof(BaseEntity.Id));
             });
     }
 
