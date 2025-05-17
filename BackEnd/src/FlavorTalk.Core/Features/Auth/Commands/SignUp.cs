@@ -3,9 +3,9 @@ using FluentResults;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 
-namespace FlavorTalk.Core.Features.Users.Commands;
+namespace FlavorTalk.Core.Features.Auth.Commands;
 
-public static class CreateUser
+public static class SignUp
 {
     public record Command(string Name, string Email, string Password)
     {
