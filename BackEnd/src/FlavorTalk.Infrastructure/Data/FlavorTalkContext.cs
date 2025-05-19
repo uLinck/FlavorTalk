@@ -35,11 +35,11 @@ public class FlavorTalkContext : IdentityDbContext<User, Role, Guid>
 
         modelBuilder.Model.GetEntityTypes()
             .Select(t => t.ClrType)
-            .Where(t => t.IsSubclassOf(typeof(Entity)))
+            .Where(t => t.IsSubclassOf(typeof(BaseEntity)))
             .ForEach(sde =>
             {
                 modelBuilder.Entity(sde)
-                    .HasKey(nameof(Entity.Id));
+                    .HasKey(nameof(BaseEntity.Id));
             });
     }
 

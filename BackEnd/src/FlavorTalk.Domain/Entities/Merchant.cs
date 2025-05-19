@@ -1,7 +1,7 @@
 ﻿using FlavorTalk.Domain.Entities.ValueObjects;
 
 namespace FlavorTalk.Domain.Entities;
-public class Merchant : Entity
+public class Merchant : BaseEntity
 {
     public required string Name { get; set; }
 

@@ -15,7 +15,7 @@ public interface ISoftDeletable
     void Delete(User? deletedBy = null);
 }
 
-public abstract class Entity : ISoftDeletable
+public abstract class BaseEntity : ISoftDeletable
 {
     public Guid Id { get; protected set; }
 
