@@ -1,4 +1,5 @@
 ﻿using FlavorTalk.Domain.Entities;
+using FlavorTalk.Domain.Resources;
 using FlavorTalk.Infrastructure.Data;
 using FlavorTalk.Shared.Extensions;
 using FluentResults;
@@ -7,7 +8,7 @@ using FluentValidation;
 namespace FlavorTalk.Core.Features.Catalogs.Commands;
 public static class CreatePlate
 {
-    public record Command(string Name, string Description, Guid? CategoryId)
+    public record Command(string Name, string Description, Guid? CategoryId, Guid MerchantId)
     {
         public class Validator : AbstractValidator<Command>
         {
@@ -18,6 +19,10 @@ public static class CreatePlate
                     .NotEmpty();
 
                 RuleFor(x => x.Description)
+                    .NotNull()
+                    .NotEmpty();
+
+                RuleFor(x => x.MerchantId)
                     .NotNull()
                     .NotEmpty();
             }
@@ -31,6 +36,11 @@ public static class CreatePlate
     {
         public static async Task<Result<Response>> Handle(Command command, FlavorTalkContext context)
         {
+            var merchant = await context.Merchants.FindAsync(command.MerchantId);
+
+            if (merchant is null)
+                return Result.Fail(Errors.MerchantNotFound);
+
             Category? category = null;
 
             if (command.CategoryId is not null)
@@ -39,7 +49,7 @@ public static class CreatePlate
             var plate = new Plate(command.Name, command.Description);
 
             if (category is null)
-                context.Categories.Add(new Category(plate.Name, [plate]));
+                merchant.Catalog.AddCategory(new(plate.Name, [plate]));
             else
                 context.Categories.Update(category.With(c => c.AddPlate(plate)));
 

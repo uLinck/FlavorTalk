@@ -35,10 +35,10 @@ public static class GenerateToken
             IOptions<AppSettings> options)
         {
             var user = await userManager.FindByEmailAsync(command.Email);
-            if (user is null) return Result.Fail(AuthError.UserNotFound);
+            if (user is null) return Result.Fail(Errors.UserNotFound);
 
             var result = await signInManager.PasswordSignInAsync(user, command.Password, false, false);
-            if (!result.Succeeded) return Result.Fail(AuthError.CouldNotSignIn);
+            if (!result.Succeeded) return Result.Fail(Errors.CouldNotSignIn);
 
             var token = GenerateJwtToken(options.Value);
 

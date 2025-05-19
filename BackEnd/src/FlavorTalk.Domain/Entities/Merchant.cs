@@ -5,7 +5,7 @@ public class Merchant : BaseEntity
 {
     public required string Name { get; set; }
 
-    // TO-DO Catalog
+    public Catalog Catalog { get; set; } = new([]);
 
     // TO-DO Review
 

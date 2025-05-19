@@ -1,4 +1,5 @@
-﻿using FlavorTalk.Shared.Extensions;
+﻿using FlavorTalk.Domain.Resources;
+using FlavorTalk.Shared.Extensions;
 
 namespace FlavorTalk.Domain.Entities;
 public class Catalog : BaseEntity
@@ -10,5 +11,13 @@ public class Catalog : BaseEntity
         Categories = categories;
     }
 
-    public List<Category> Categories { get; set; }
+    public List<Category> Categories { get; private set; }
+
+    public void AddCategory(Category category)
+    {
+        if (Categories.Any(c => string.Equals(c.Name, category.Name, StringComparison.InvariantCultureIgnoreCase)))
+            throw new ArgumentException(Errors.CategoriesMusHaveUniqueName);
+
+        Categories.Add(category);
+    }
 }

@@ -18,17 +18,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\AuthError.Designer.cs">
+    <Compile Update="Resources\Errors.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>AuthError.resx</DependentUpon>
+      <DependentUpon>Errors.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\AuthError.resx">
+    <EmbeddedResource Update="Resources\Errors.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AuthError.Designer.cs</LastGenOutput>
+      <LastGenOutput>Errors.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
