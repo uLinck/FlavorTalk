@@ -4,6 +4,7 @@ using FlavorTalk.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,97 +12,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlavorTalk.Infrastructure.Migrations
 {
     [DbContext(typeof(FlavorTalkContext))]
-    partial class FlavorTalkContextModelSnapshot : ModelSnapshot
+    [Migration("20250519103312_AlterTable_Merchants_NameTable")]
+    partial class AlterTable_Merchants_NameTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("FlavorTalk.Domain.Entities.Catalog", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedById")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DeletedById");
-
-                    b.ToTable("Catalogs");
-                });
-
-            modelBuilder.Entity("FlavorTalk.Domain.Entities.Category", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CatalogId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedById")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CatalogId");
-
-                    b.HasIndex("DeletedById");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("FlavorTalk.Domain.Entities.Plate", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedById")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float?>("RatingAverage")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("DeletedById");
-
-                    b.ToTable("Plates");
-                });
 
             modelBuilder.Entity("FlavorTalk.Domain.Entities.Merchant", b =>
                 {
@@ -345,41 +267,6 @@ namespace FlavorTalk.Infrastructure.Migrations
                     b.ToTable("UserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("FlavorTalk.Domain.Entities.Catalog", b =>
-                {
-                    b.HasOne("FlavorTalk.Domain.Entities.User", "DeletedBy")
-                        .WithMany()
-                        .HasForeignKey("DeletedById");
-
-                    b.Navigation("DeletedBy");
-                });
-
-            modelBuilder.Entity("FlavorTalk.Domain.Entities.Category", b =>
-                {
-                    b.HasOne("FlavorTalk.Domain.Entities.Catalog", null)
-                        .WithMany("Categories")
-                        .HasForeignKey("CatalogId");
-
-                    b.HasOne("FlavorTalk.Domain.Entities.User", "DeletedBy")
-                        .WithMany()
-                        .HasForeignKey("DeletedById");
-
-                    b.Navigation("DeletedBy");
-                });
-
-            modelBuilder.Entity("FlavorTalk.Domain.Entities.Plate", b =>
-                {
-                    b.HasOne("FlavorTalk.Domain.Entities.Category", null)
-                        .WithMany("Plates")
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("FlavorTalk.Domain.Entities.User", "DeletedBy")
-                        .WithMany()
-                        .HasForeignKey("DeletedById");
-
-                    b.Navigation("DeletedBy");
-                });
-
             modelBuilder.Entity("FlavorTalk.Domain.Entities.Merchant", b =>
                 {
                     b.HasOne("FlavorTalk.Domain.Entities.User", "DeletedBy")
@@ -496,16 +383,6 @@ namespace FlavorTalk.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("FlavorTalk.Domain.Entities.Catalog", b =>
-                {
-                    b.Navigation("Categories");
-                });
-
-            modelBuilder.Entity("FlavorTalk.Domain.Entities.Category", b =>
-                {
-                    b.Navigation("Plates");
                 });
 #pragma warning restore 612, 618
         }
