@@ -16,18 +16,13 @@ class SignInPage extends HookConsumerWidget {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(16.0, 32),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             TextField(
               focusNode: emailFocus,
               onChanged: controller.setEmail,
-              decoration: const InputDecoration(
-                labelText: 'E-mail',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-              ),
+              decoration: const InputDecoration(labelText: 'E-mail'),
             ),
             TextField(
               focusNode: passwordFocus,
