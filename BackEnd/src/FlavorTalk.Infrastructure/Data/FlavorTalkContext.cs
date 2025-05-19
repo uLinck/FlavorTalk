@@ -16,6 +16,7 @@ public class FlavorTalkContext : IdentityDbContext<User, Role, Guid>
     {
     }
 
+    public DbSet<Merchant> Merchants { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -24,6 +25,7 @@ public class FlavorTalkContext : IdentityDbContext<User, Role, Guid>
         // Override default AspNet Identity table names
         modelBuilder.Entity<User>(entity => entity.ToTable(name: "Users"));
         modelBuilder.Entity<Role>(entity => entity.ToTable(name: "Roles"));
+
         modelBuilder.Entity<IdentityUserRole<Guid>>(entity => entity.ToTable("UserRoles"));
         modelBuilder.Entity<IdentityUserClaim<Guid>>(entity => entity.ToTable("UserClaims"));
         modelBuilder.Entity<IdentityUserLogin<Guid>>(entity => entity.ToTable("UserLogins"));
@@ -32,11 +34,11 @@ public class FlavorTalkContext : IdentityDbContext<User, Role, Guid>
 
         modelBuilder.Model.GetEntityTypes()
             .Select(t => t.ClrType)
-            .Where(t => t.IsSubclassOf(typeof(Entity)))
+            .Where(t => t.IsSubclassOf(typeof(BaseEntity)))
             .ForEach(sde =>
             {
                 modelBuilder.Entity(sde)
-                    .HasKey(nameof(Entity.Id));
+                    .HasKey(nameof(BaseEntity.Id));
             });
     }
 
