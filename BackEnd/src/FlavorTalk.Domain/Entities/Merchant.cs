@@ -1,5 +1,7 @@
-﻿namespace FlavorTalk.Domain.Entities;
-public class Merchant : UserBaseEntity
+﻿using FlavorTalk.Domain.Entities.ValueObjects;
+
+namespace FlavorTalk.Domain.Entities;
+public class Merchant : Entity
 {
     public required string Name { get; set; }
 
@@ -7,7 +9,7 @@ public class Merchant : UserBaseEntity
 
     // TO-DO Review
 
-    public decimal? RatingAverage { get; set; }
+    public float? RatingAverage { get; set; }
 
     public long Likes { get; set; } = 0;
 

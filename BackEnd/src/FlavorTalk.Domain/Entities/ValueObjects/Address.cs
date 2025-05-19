@@ -1,4 +1,8 @@
-﻿namespace FlavorTalk.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace FlavorTalk.Domain.Entities.ValueObjects;
+
+[Owned]
 public class Address
 {
 
