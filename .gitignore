@@ -17,392 +17,393 @@
 mono_crash.*
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-[Ww][Ii][Nn]32/
-[Aa][Rr][Mm]/
-[Aa][Rr][Mm]64/
-bld/
-[Bb]in/
-[Oo]bj/
-[Oo]ut/
-[Ll]og/
-[Ll]ogs/
+BackEnd/**/[Dd]ebug/
+BackEnd/**/[Dd]ebugPublic/
+BackEnd/**/[Rr]elease/
+BackEnd/**/[Rr]eleases/
+BackEnd/**/x64/
+BackEnd/**/x86/
+BackEnd/**/[Ww][Ii][Nn]32/
+BackEnd/**/[Aa][Rr][Mm]/
+BackEnd/**/[Aa][Rr][Mm]64/
+BackEnd/**/bld/
+BackEnd/**/[Bb]in/
+BackEnd/**/[Oo]bj/
+BackEnd/**/[Oo]ut/
+BackEnd/**/[Ll]og/
+BackEnd/**/[Ll]ogs/
 
 # Visual Studio 2015/2017 cache/options directory
-.vs/
-# Uncomment if you have tasks that create the project's static files in wwwroot
-#wwwroot/
+**/.vs/
+# ASP.NET Core specific files (for FlavorTalk.Api)
+BackEnd/src/FlavorTalk.Api/wwwroot/
 
 # Visual Studio 2017 auto generated files
-Generated\ Files/
+BackEnd/Generated\ Files/
 
 # MSTest test Results
-[Tt]est[Rr]esult*/
-[Bb]uild[Ll]og.*
+BackEnd/[Tt]est[Rr]esult*/
+BackEnd/[Bb]uild[Ll]og.*
 
 # NUnit
-*.VisualState.xml
-TestResult.xml
-nunit-*.xml
+BackEnd/*.VisualState.xml
+BackEnd/TestResult.xml
+BackEnd/nunit-*.xml
 
 # Build Results of an ATL Project
-[Dd]ebugPS/
-[Rr]eleasePS/
-dlldata.c
+BackEnd/[Dd]ebugPS/
+BackEnd/[Rr]eleasePS/
+BackEnd/dlldata.c
 
 # Benchmark Results
-BenchmarkDotNet.Artifacts/
+BackEnd/BenchmarkDotNet.Artifacts/
 
 # .NET Core
-project.lock.json
-project.fragment.lock.json
-artifacts/
+BackEnd/project.lock.json
+BackEnd/project.fragment.lock.json
+BackEnd/artifacts/
 
 # ASP.NET Scaffolding
-ScaffoldingReadMe.txt
+BackEnd/ScaffoldingReadMe.txt
 
 # StyleCop
-StyleCopReport.xml
+BackEnd/StyleCopReport.xml
 
 # Files built by Visual Studio
-*_i.c
-*_p.c
-*_h.h
-*.ilk
-*.meta
-*.obj
-*.iobj
-*.pch
-*.pdb
-*.ipdb
-*.pgc
-*.pgd
-*.rsp
-*.sbr
-*.tlb
-*.tli
-*.tlh
-*.tmp
-*.tmp_proj
-*_wpftmp.csproj
-*.log
-*.vspscc
-*.vssscc
-.builds
-*.pidb
-*.svclog
-*.scc
+BackEnd/**/*_i.c
+BackEnd/**/*_p.c
+BackEnd/**/*_h.h
+BackEnd/**/*.ilk
+BackEnd/**/*.meta
+BackEnd/**/*.obj
+BackEnd/**/*.iobj
+BackEnd/**/*.pch
+BackEnd/**/*.pdb
+BackEnd/**/*.ipdb
+BackEnd/**/*.pgc
+BackEnd/**/*.pgd
+BackEnd/**/*.rsp
+BackEnd/**/*.sbr
+BackEnd/**/*.tlb
+BackEnd/**/*.tli
+BackEnd/**/*.tlh
+BackEnd/**/*.tmp
+BackEnd/**/*.tmp_proj
+BackEnd/**/*_wpftmp.csproj
+BackEnd/**/*.log
+BackEnd/**/*.vspscc
+BackEnd/**/*.vssscc
+BackEnd/**/.builds
+BackEnd/**/*.pidb
+BackEnd/**/*.svclog
+BackEnd/**/*.scc
 
 # Chutzpah Test files
-_Chutzpah*
+BackEnd/_Chutzpah*
 
 # Visual C++ cache files
-ipch/
-*.aps
-*.ncb
-*.opendb
-*.opensdf
-*.sdf
-*.cachefile
-*.VC.db
-*.VC.VC.opendb
+BackEnd/ipch/
+BackEnd/*.aps
+BackEnd/*.ncb
+BackEnd/*.opendb
+BackEnd/*.opensdf
+BackEnd/*.sdf
+BackEnd/*.cachefile
+BackEnd/*.VC.db
+BackEnd/*.VC.VC.opendb
 
 # Visual Studio profiler
-*.psess
-*.vsp
-*.vspx
-*.sap
+BackEnd/*.psess
+BackEnd/*.vsp
+BackEnd/*.vspx
+BackEnd/*.sap
 
 # Visual Studio Trace Files
-*.e2e
+BackEnd/*.e2e
 
 # TFS 2012 Local Workspace
-$tf/
+BackEnd/$tf/
 
 # Guidance Automation Toolkit
-*.gpState
+BackEnd/*.gpState
 
 # ReSharper is a .NET coding add-in
-_ReSharper*/
-*.[Rr]e[Ss]harper
-*.DotSettings.user
+BackEnd/_ReSharper*/
+BackEnd/*.[Rr]e[Ss]harper
+BackEnd/*.DotSettings.user
 
 # TeamCity is a build add-in
-_TeamCity*
+BackEnd/_TeamCity*
 
 # DotCover is a Code Coverage Tool
-*.dotCover
+BackEnd/*.dotCover
 
 # AxoCover is a Code Coverage Tool
-.axoCover/*
-!.axoCover/settings.json
+BackEnd/.axoCover/*
+!BackEnd/.axoCover/settings.json
 
 # Coverlet is a free, cross platform Code Coverage Tool
-coverage*.json
-coverage*.xml
-coverage*.info
+BackEnd/coverage*.json
+BackEnd/coverage*.xml
+BackEnd/coverage*.info
 
 # Visual Studio code coverage results
-*.coverage
-*.coveragexml
+BackEnd/*.coverage
+BackEnd/*.coveragexml
 
 # NCrunch
-_NCrunch_*
-.*crunch*.local.xml
-nCrunchTemp_*
+BackEnd/_NCrunch_*
+BackEnd/.*crunch*.local.xml
+BackEnd/nCrunchTemp_*
 
 # MightyMoose
-*.mm.*
-AutoTest.Net/
+BackEnd/*.mm.*
+BackEnd/AutoTest.Net/
 
 # Web workbench (sass)
-.sass-cache/
+BackEnd/.sass-cache/
 
 # Installshield output folder
-[Ee]xpress/
+BackEnd/[Ee]xpress/
 
 # DocProject is a documentation generator add-in
-DocProject/buildhelp/
-DocProject/Help/*.HxT
-DocProject/Help/*.HxC
-DocProject/Help/*.hhc
-DocProject/Help/*.hhk
-DocProject/Help/*.hhp
-DocProject/Help/Html2
-DocProject/Help/html
+BackEnd/DocProject/buildhelp/
+BackEnd/DocProject/Help/*.HxT
+BackEnd/DocProject/Help/*.HxC
+BackEnd/DocProject/Help/*.hhc
+BackEnd/DocProject/Help/*.hhk
+BackEnd/DocProject/Help/*.hhp
+BackEnd/DocProject/Help/Html2
+BackEnd/DocProject/Help/html
 
 # Click-Once directory
-publish/
+BackEnd/publish/
 
 # Publish Web Output
-*.[Pp]ublish.xml
-*.azurePubxml
+BackEnd/*.[Pp]ublish.xml
+BackEnd/*.azurePubxml
 # Note: Comment the next line if you want to checkin your web deploy settings,
 # but database connection strings (with potential passwords) will be unencrypted
-*.pubxml
-*.publishproj
+BackEnd/*.pubxml
+BackEnd/*.publishproj
 
 # Microsoft Azure Web App publish settings. Comment the next line if you want to
 # checkin your Azure Web App publish settings, but sensitive information contained
 # in these scripts will be unencrypted
-PublishScripts/
+BackEnd/PublishScripts/
 
 # NuGet Packages
-*.nupkg
+BackEnd/*.nupkg
 # NuGet Symbol Packages
-*.snupkg
+BackEnd/*.snupkg
 # The packages folder can be ignored because of Package Restore
-**/[Pp]ackages/*
+BackEnd/**/[Pp]ackages/*
 # except build/, which is used as an MSBuild target.
-!**/[Pp]ackages/build/
+!BackEnd/**/[Pp]ackages/build/
 # Uncomment if necessary however generally it will be regenerated when needed
-#!**/[Pp]ackages/repositories.config
+#!BackEnd/**/[Pp]ackages/repositories.config
 # NuGet v3's project.json files produces more ignorable files
-*.nuget.props
-*.nuget.targets
+BackEnd/*.nuget.props
+BackEnd/*.nuget.targets
 
 # Microsoft Azure Build Output
-csx/
-*.build.csdef
+BackEnd/csx/
+BackEnd/*.build.csdef
 
 # Microsoft Azure Emulator
-ecf/
-rcf/
+BackEnd/ecf/
+BackEnd/rcf/
 
 # Windows Store app package directories and files
-AppPackages/
-BundleArtifacts/
-Package.StoreAssociation.xml
-_pkginfo.txt
-*.appx
-*.appxbundle
-*.appxupload
+BackEnd/AppPackages/
+BackEnd/BundleArtifacts/
+BackEnd/Package.StoreAssociation.xml
+BackEnd/_pkginfo.txt
+BackEnd/*.appx
+BackEnd/*.appxbundle
+BackEnd/*.appxupload
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
-*.[Cc]ache
+BackEnd/*.[Cc]ache
 # but keep track of directories ending in .cache
-!?*.[Cc]ache/
+!BackEnd/?*.[Cc]ache/
 
 # Others
-ClientBin/
-~$*
-*~
-*.dbmdl
-*.dbproj.schemaview
-*.jfm
-*.pfx
-*.publishsettings
-orleans.codegen.cs
+BackEnd/ClientBin/
+BackEnd/~$*
+BackEnd/*~
+BackEnd/*.dbmdl
+BackEnd/*.dbproj.schemaview
+BackEnd/*.jfm
+BackEnd/*.pfx
+BackEnd/*.publishsettings
+BackEnd/orleans.codegen.cs
 
 # Including strong name files can present a security risk
 # (https://github.com/github/gitignore/pull/2483#issue-259490424)
-#*.snk
+#BackEnd/*.snk
 
 # Since there are multiple workflows, uncomment next line to ignore bower_components
 # (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
-#bower_components/
+#BackEnd/bower_components/
 
 # RIA/Silverlight projects
-Generated_Code/
+BackEnd/Generated_Code/
 
 # Backup & report files from converting an old project file
 # to a newer Visual Studio version. Backup files are not needed,
 # because we have git ;-)
-_UpgradeReport_Files/
-Backup*/
-UpgradeLog*.XML
-UpgradeLog*.htm
-ServiceFabricBackup/
-*.rptproj.bak
+BackEnd/_UpgradeReport_Files/
+BackEnd/Backup*/
+BackEnd/UpgradeLog*.XML
+BackEnd/UpgradeLog*.htm
+BackEnd/ServiceFabricBackup/
+BackEnd/*.rptproj.bak
 
 # SQL Server files
-*.mdf
-*.ldf
-*.ndf
+BackEnd/*.mdf
+BackEnd/*.ldf
+BackEnd/*.ndf
 
 # Business Intelligence projects
-*.rdl.data
-*.bim.layout
-*.bim_*.settings
-*.rptproj.rsuser
-*- [Bb]ackup.rdl
-*- [Bb]ackup ([0-9]).rdl
-*- [Bb]ackup ([0-9][0-9]).rdl
+BackEnd/*.rdl.data
+BackEnd/*.bim.layout
+BackEnd/*.bim_*.settings
+BackEnd/*.rptproj.rsuser
+BackEnd/*- [Bb]ackup.rdl
+BackEnd/*- [Bb]ackup ([0-9]).rdl
+BackEnd/*- [Bb]ackup ([0-9][0-9]).rdl
 
 # Microsoft Fakes
-FakesAssemblies/
+BackEnd/FakesAssemblies/
 
 # GhostDoc plugin setting file
-*.GhostDoc.xml
+BackEnd/*.GhostDoc.xml
 
 # Node.js Tools for Visual Studio
-.ntvs_analysis.dat
-node_modules/
+BackEnd/.ntvs_analysis.dat
+BackEnd/node_modules/
 
 # Visual Studio 6 build log
-*.plg
+BackEnd/*.plg
 
 # Visual Studio 6 workspace options file
-*.opt
+BackEnd/*.opt
 
 # Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
-*.vbw
+BackEnd/*.vbw
 
 # Visual Studio LightSwitch build output
-**/*.HTMLClient/GeneratedArtifacts
-**/*.DesktopClient/GeneratedArtifacts
-**/*.DesktopClient/ModelManifest.xml
-**/*.Server/GeneratedArtifacts
-**/*.Server/ModelManifest.xml
-_Pvt_Extensions
+BackEnd/**/*.HTMLClient/GeneratedArtifacts
+BackEnd/**/*.DesktopClient/GeneratedArtifacts
+BackEnd/**/*.DesktopClient/ModelManifest.xml
+BackEnd/**/*.Server/GeneratedArtifacts
+BackEnd/**/*.Server/ModelManifest.xml
+BackEnd/_Pvt_Extensions
 
 # Paket dependency manager
-.paket/paket.exe
-paket-files/
+BackEnd/.paket/paket.exe
+BackEnd/paket-files/
 
 # FAKE - F# Make
-.fake/
+BackEnd/.fake/
 
 # CodeRush personal settings
-.cr/personal
+BackEnd/.cr/personal
 
 # Python Tools for Visual Studio (PTVS)
-__pycache__/
-*.pyc
+BackEnd/__pycache__/
+BackEnd/*.pyc
 
 # Cake - Uncomment if you are using it
-# tools/**
-# !tools/packages.config
+# BackEnd/tools/**
+# !BackEnd/tools/packages.config
 
 # Tabs Studio
-*.tss
+BackEnd/*.tss
 
 # Telerik's JustMock configuration file
-*.jmconfig
+BackEnd/*.jmconfig
 
 # BizTalk build output
-*.btp.cs
-*.btm.cs
-*.odx.cs
-*.xsd.cs
+BackEnd/*.btp.cs
+BackEnd/*.btm.cs
+BackEnd/*.odx.cs
+BackEnd/*.xsd.cs
 
 # OpenCover UI analysis results
-OpenCover/
+BackEnd/OpenCover/
 
 # Azure Stream Analytics local run output
-ASALocalRun/
+BackEnd/ASALocalRun/
 
 # MSBuild Binary and Structured Log
-*.binlog
+BackEnd/*.binlog
 
 # NVidia Nsight GPU debugger configuration file
-*.nvuser
+BackEnd/*.nvuser
 
 # MFractors (Xamarin productivity tool) working folder
-.mfractor/
+BackEnd/.mfractor/
 
 # Local History for Visual Studio
-.localhistory/
+BackEnd/.localhistory/
 
 # BeatPulse healthcheck temp database
-healthchecksdb
+BackEnd/healthchecksdb
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
-MigrationBackup/
+BackEnd/MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
-.ionide/
+BackEnd/.ionide/
 
+# Flutter/Dart related
 # Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
-.DS_Store
-.atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
+FrontEnd/flavortalk_app/*.class
+FrontEnd/flavortalk_app/*.log
+FrontEnd/flavortalk_app/*.pyc
+FrontEnd/flavortalk_app/*.swp
+FrontEnd/flavortalk_app/.DS_Store
+FrontEnd/flavortalk_app/.atom/
+FrontEnd/flavortalk_app/.build/
+FrontEnd/flavortalk_app/.buildlog/
+FrontEnd/flavortalk_app/.history
+FrontEnd/flavortalk_app/.svn/
+FrontEnd/flavortalk_app/.swiftpm/
+FrontEnd/flavortalk_app/migrate_working_dir/
 
 # IntelliJ related
-*.iml
-*.ipr
-*.iws
-.idea/
+FrontEnd/flavortalk_app/*.iml
+FrontEnd/flavortalk_app/*.ipr
+FrontEnd/flavortalk_app/*.iws
+FrontEnd/flavortalk_app/.idea/
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
 #.vscode/
 
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.pub-cache/
-.pub/
-/build/
+# Flutter/Dart
+FrontEnd/flavortalk_app/.dart_tool/
+FrontEnd/flavortalk_app/.flutter-plugins
+FrontEnd/flavortalk_app/.flutter-plugins-dependencies
+FrontEnd/flavortalk_app/.pub-cache/
+FrontEnd/flavortalk_app/.pub/
+FrontEnd/flavortalk_app/build/
 
-# Symbolication related
-app.*.symbols
+# Docs (se você gerar com dart doc)
+FrontEnd/flavortalk_app/doc/api/
 
-# Obfuscation related
-app.*.map.json
+# Flutter iOS
+FrontEnd/flavortalk_app/ios/Flutter/.last_build_id
 
-# Android Studio will place build artifacts here
-**/android/app/debug
-**/android/app/profile
-**/android/app/release
+# Obfuscation & symbolication
+FrontEnd/flavortalk_app/app.*.symbols
+FrontEnd/flavortalk_app/app.*.map.json
 
-**/FrontEnd/flavortalk_app/build/app/outputs/flutter-apk
+# Android build outputs
+FrontEnd/flavortalk_app/android/app/debug/
+FrontEnd/flavortalk_app/android/app/profile/
+FrontEnd/flavortalk_app/android/app/release/
