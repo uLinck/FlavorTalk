@@ -4,6 +4,7 @@ using FlavorTalk.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlavorTalk.Infrastructure.Migrations
 {
     [DbContext(typeof(FlavorTalkContext))]
-    partial class FlavorTalkContextModelSnapshot : ModelSnapshot
+    [Migration("20250517031415_AddedCatalogCategoryAndPlate")]
+    partial class AddedCatalogCategoryAndPlate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,44 +70,6 @@ namespace FlavorTalk.Infrastructure.Migrations
                     b.HasIndex("DeletedById");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("FlavorTalk.Domain.Entities.Merchant", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CatalogId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ContactNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedById")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<long>("Likes")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float?>("RatingAverage")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CatalogId");
-
-                    b.HasIndex("DeletedById");
-
-                    b.ToTable("Merchants");
                 });
 
             modelBuilder.Entity("FlavorTalk.Domain.Entities.Plate", b =>
@@ -368,72 +333,6 @@ namespace FlavorTalk.Infrastructure.Migrations
                     b.HasOne("FlavorTalk.Domain.Entities.User", "DeletedBy")
                         .WithMany()
                         .HasForeignKey("DeletedById");
-
-                    b.Navigation("DeletedBy");
-                });
-
-            modelBuilder.Entity("FlavorTalk.Domain.Entities.Merchant", b =>
-                {
-                    b.HasOne("FlavorTalk.Domain.Entities.Catalog", "Catalog")
-                        .WithMany()
-                        .HasForeignKey("CatalogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FlavorTalk.Domain.Entities.User", "DeletedBy")
-                        .WithMany()
-                        .HasForeignKey("DeletedById");
-
-                    b.OwnsOne("FlavorTalk.Domain.Entities.ValueObjects.Address", "Address", b1 =>
-                        {
-                            b1.Property<Guid>("MerchantId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<string>("City")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Complement")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Country")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Neighborhood")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Number")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Reference")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("State")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Street")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("ZipCode")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("MerchantId");
-
-                            b1.ToTable("Merchants");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MerchantId");
-                        });
-
-                    b.Navigation("Address")
-                        .IsRequired();
-
-                    b.Navigation("Catalog");
 
                     b.Navigation("DeletedBy");
                 });

@@ -22,14 +22,14 @@ namespace FlavorTalk.Domain.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class AuthError {
+    public class Errors {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AuthError() {
+        internal Errors() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace FlavorTalk.Domain.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FlavorTalk.Domain.Resources.AuthError", typeof(AuthError).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FlavorTalk.Domain.Resources.Errors", typeof(Errors).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,29 @@ namespace FlavorTalk.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categories must have Unique name.
+        /// </summary>
+        public static string CategoriesMusHaveUniqueName {
+            get {
+                return ResourceManager.GetString("CategoriesMusHaveUniqueName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not SignIn. Email or Password is incorrect..
         /// </summary>
         public static string CouldNotSignIn {
             get {
                 return ResourceManager.GetString("CouldNotSignIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merchant not found.
+        /// </summary>
+        public static string MerchantNotFound {
+            get {
+                return ResourceManager.GetString("MerchantNotFound", resourceCulture);
             }
         }
         

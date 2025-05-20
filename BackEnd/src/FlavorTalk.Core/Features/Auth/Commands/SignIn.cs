@@ -19,7 +19,7 @@ public static class SignIn
         }
     }
 
-    public record Response(Guid Id, string Name, string? Email);
+    public record Response(Guid UserId, string Name, string? Email);
 
     public class Handler
     {
@@ -28,10 +28,10 @@ public static class SignIn
             SignInManager<User> signInManager)
         {
             var user = await userManager.FindByEmailAsync(command.Email);
-            if (user is null) return Result.Fail(AuthError.UserNotFound);
+            if (user is null) return Result.Fail(Errors.UserNotFound);
 
             var result = await signInManager.PasswordSignInAsync(user, command.Password, command.RememberMe, false);
-            if (!result.Succeeded) return Result.Fail(AuthError.CouldNotSignIn);
+            if (!result.Succeeded) return Result.Fail(Errors.CouldNotSignIn);
 
             return Result.Ok(new Response(user.Id, user.Name, user.Email));
         }

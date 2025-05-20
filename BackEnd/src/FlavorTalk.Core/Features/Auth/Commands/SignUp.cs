@@ -3,16 +3,12 @@ using FluentResults;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 
-namespace FlavorTalk.Core.Features.Users.Commands;
+namespace FlavorTalk.Core.Features.Auth.Commands;
 
-public static class CreateUser
+public static class SignUp
 {
-    public class Command(string name, string email, string password)
+    public record Command(string Name, string Email, string Password)
     {
-        public string Name { get; } = name;
-        public string Email { get; } = email;
-        public string Password { get; } = password;
-
         public class Validator : AbstractValidator<Command>
         {
             public Validator()
@@ -24,7 +20,7 @@ public static class CreateUser
         }
     }
 
-    public record Response(Guid Id, string Name, string Email);
+    public record Response(Guid UserId, string Name, string Email);
 
     public class Handler
     {

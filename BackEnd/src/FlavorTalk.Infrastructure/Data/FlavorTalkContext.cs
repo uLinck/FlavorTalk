@@ -16,6 +16,9 @@ public class FlavorTalkContext : IdentityDbContext<User, Role, Guid>
     {
     }
 
+    public DbSet<Catalog> Catalogs { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Plate> Plates { get; set; }
     public DbSet<Merchant> Merchants { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
