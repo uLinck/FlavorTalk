@@ -166,7 +166,7 @@ namespace FlavorTalk.Infrastructure.Migrations
                     b.Property<int>("Like")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("MerchantId")
+                    b.Property<Guid?>("MerchantId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("PlateId")
@@ -513,23 +513,17 @@ namespace FlavorTalk.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("DeletedById");
 
-                    b.HasOne("FlavorTalk.Domain.Entities.Merchant", "Merchant")
-                        .WithMany()
-                        .HasForeignKey("MerchantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("FlavorTalk.Domain.Entities.Merchant", null)
+                        .WithMany("Reviews")
+                        .HasForeignKey("MerchantId");
 
-                    b.HasOne("FlavorTalk.Domain.Entities.Plate", "Plate")
-                        .WithMany()
+                    b.HasOne("FlavorTalk.Domain.Entities.Plate", null)
+                        .WithMany("Reviews")
                         .HasForeignKey("PlateId");
 
                     b.Navigation("Author");
 
                     b.Navigation("DeletedBy");
-
-                    b.Navigation("Merchant");
-
-                    b.Navigation("Plate");
                 });
 
             modelBuilder.Entity("FlavorTalk.Domain.Entities.User", b =>
@@ -600,6 +594,16 @@ namespace FlavorTalk.Infrastructure.Migrations
             modelBuilder.Entity("FlavorTalk.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Plates");
+                });
+
+            modelBuilder.Entity("FlavorTalk.Domain.Entities.Merchant", b =>
+                {
+                    b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("FlavorTalk.Domain.Entities.Plate", b =>
+                {
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

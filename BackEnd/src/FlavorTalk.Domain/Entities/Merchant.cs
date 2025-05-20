@@ -7,7 +7,7 @@ public class Merchant : BaseEntity
 
     public Catalog Catalog { get; set; } = new([]);
 
-    // TO-DO Review
+    public required List<Review> Reviews { get; set; } = [];
 
     public float? RatingAverage { get; set; }
 

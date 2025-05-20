@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FlavorTalk.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddTable_Review : Migration
+    public partial class AddTable_Reviews : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,12 +18,12 @@ namespace FlavorTalk.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MerchantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PlateId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Rating = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Recommends = table.Column<bool>(type: "bit", nullable: false),
                     Like = table.Column<int>(type: "int", nullable: false),
                     Dislike = table.Column<int>(type: "int", nullable: false),
+                    MerchantId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    PlateId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     DeletedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
@@ -34,8 +34,7 @@ namespace FlavorTalk.Infrastructure.Migrations
                         name: "FK_Reviews_Merchants_MerchantId",
                         column: x => x.MerchantId,
                         principalTable: "Merchants",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Reviews_Plates_PlateId",
                         column: x => x.PlateId,

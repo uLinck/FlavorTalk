@@ -12,7 +12,10 @@ public class Plate : BaseEntity
     }
 
     public string Name { get; set; }
+
     public string? Description { get; set; }
-    //TODO: Add Reviews
+
+    public List<Review> Reviews { get; set; } = [];
+
     public float? RatingAverage { get; set; }
 }
