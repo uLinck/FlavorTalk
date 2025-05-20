@@ -1,6 +1,0 @@
-﻿--
-Add New Migrations:
-Add-Migration (NameMigrations) -Project FlavorTalk.Infrastructure -StartupProject FlavorTalk.Api
---
-
-
