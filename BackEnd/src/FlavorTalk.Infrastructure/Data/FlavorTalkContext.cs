@@ -44,6 +44,4 @@ public class FlavorTalkContext : IdentityDbContext<User, Role, Guid>
                     .HasKey(nameof(BaseEntity.Id));
             });
     }
-
-
 }

@@ -15,15 +15,12 @@ public static class CreatePlate
             public Validator()
             {
                 RuleFor(x => x.Name)
-                    .NotNull()
                     .NotEmpty();
 
                 RuleFor(x => x.Description)
-                    .NotNull()
                     .NotEmpty();
 
                 RuleFor(x => x.MerchantId)
-                    .NotNull()
                     .NotEmpty();
             }
         }

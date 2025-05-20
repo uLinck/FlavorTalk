@@ -1,5 +1,6 @@
 ﻿using FlavorTalk.Api.Extensions;
 using FlavorTalk.Core.Features.Catalogs.Commands;
+using FlavorTalk.Core.Features.Plates.Commands;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Wolverine;
@@ -15,6 +16,17 @@ public class PlateController : BaseController
     public async Task<ActionResult<CreatePlate.Response>> CreatePlateAsync(CreatePlate.Command command)
     {
         var result = await Bus.SendAsync<CreatePlate.Response>(command);
+
+        if (result.IsFailed)
+            return BadRequest(result);
+
+        return Ok(result);
+    }
+
+    [HttpPut]
+    public async Task<ActionResult<UpdatePlate.Response>> UpdatePlate(UpdatePlate.Command command)
+    {
+        var result = await Bus.SendAsync<UpdatePlate.Response>(command);
 
         if (result.IsFailed)
             return BadRequest(result);

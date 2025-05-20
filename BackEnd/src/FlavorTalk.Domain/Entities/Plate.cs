@@ -11,8 +11,15 @@ public class Plate : BaseEntity
         Description = description;
     }
 
-    public string Name { get; set; }
-    public string? Description { get; set; }
+    public string Name { get; private set; }
+    public string? Description { get; private set;}
     //TODO: Add Reviews
-    public float? RatingAverage { get; set; }
+    public float? RatingAverage { get; }
+
+    public void Update(string name, string? description)
+    {
+        name.CannotBeNullOrEmpty();
+        Name = name;
+        Description = description;
+    }
 }
