@@ -14,7 +14,7 @@ public class PlateController : BaseController
     [HttpPost]
     public async Task<ActionResult<CreatePlate.Response>> CreatePlateAsync(CreatePlate.Command command)
     {
-        var result = await Bus.SendAsync<CreatePlate.Response>(command);
+        var result = await Bus.SubmitAsync<CreatePlate.Response>(command);
 
         if (result.IsFailed)
             return BadRequest(result);
