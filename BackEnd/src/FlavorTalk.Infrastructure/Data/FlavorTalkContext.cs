@@ -21,11 +21,24 @@ public class FlavorTalkContext : IdentityDbContext<User, Role, Guid>
     public DbSet<Plate> Plates { get; set; }
     public DbSet<Merchant> Merchants { get; set; }
 
+    public DbSet<Review> Reviews { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // Override default AspNet Identity table names
+        #region Review Config
+        modelBuilder.Entity<Review>()
+            .HasKey(r => new { r.Id, r.AuthorId });
+
+        modelBuilder.Entity<Review>()
+            .HasOne(r => r.Author)
+            .WithMany()
+            .HasForeignKey(r => r.AuthorId)
+            .IsRequired();
+        #endregion
+
+        #region Override default AspNet Identity table names
         modelBuilder.Entity<User>(entity => entity.ToTable(name: "Users"));
         modelBuilder.Entity<Role>(entity => entity.ToTable(name: "Roles"));
 
@@ -34,6 +47,7 @@ public class FlavorTalkContext : IdentityDbContext<User, Role, Guid>
         modelBuilder.Entity<IdentityUserLogin<Guid>>(entity => entity.ToTable("UserLogins"));
         modelBuilder.Entity<IdentityUserToken<Guid>>(entity => entity.ToTable("UserTokens"));
         modelBuilder.Entity<IdentityRoleClaim<Guid>>(entity => entity.ToTable("RoleClaims"));
+        #endregion
 
         modelBuilder.Model.GetEntityTypes()
             .Select(t => t.ClrType)
