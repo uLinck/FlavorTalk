@@ -4,6 +4,7 @@ using FlavorTalk.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlavorTalk.Infrastructure.Migrations
 {
     [DbContext(typeof(FlavorTalkContext))]
-    partial class FlavorTalkContextModelSnapshot : ModelSnapshot
+    [Migration("20250520103308_AddTable_Reviews")]
+    partial class AddTable_Reviews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
