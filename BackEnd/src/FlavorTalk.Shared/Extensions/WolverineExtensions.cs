@@ -5,7 +5,7 @@ namespace FlavorTalk.Shared.Extensions;
 
 public static class WolverineExtensions
 {
-    public static async Task<Result<TRes>> SendAsync<TRes>(this IMessageBus bus, object command)
+    public static async Task<Result<TRes>> TrySendAsync<TRes>(this IMessageBus bus, object command)
         where TRes : class
     {
         var res = await Result.Try(() =>

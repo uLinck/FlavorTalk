@@ -4,6 +4,7 @@ using FlavorTalk.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlavorTalk.Infrastructure.Migrations
 {
     [DbContext(typeof(FlavorTalkContext))]
-    partial class FlavorTalkContextModelSnapshot : ModelSnapshot
+    [Migration("20250520103308_AddTable_Reviews")]
+    partial class AddTable_Reviews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +41,7 @@ namespace FlavorTalk.Infrastructure.Migrations
 
                     b.HasIndex("DeletedById");
 
-                    b.ToTable("Catalogs", (string)null);
+                    b.ToTable("Catalogs");
                 });
 
             modelBuilder.Entity("FlavorTalk.Domain.Entities.Category", b =>
@@ -66,7 +69,7 @@ namespace FlavorTalk.Infrastructure.Migrations
 
                     b.HasIndex("DeletedById");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("FlavorTalk.Domain.Entities.Merchant", b =>
@@ -104,7 +107,7 @@ namespace FlavorTalk.Infrastructure.Migrations
 
                     b.HasIndex("DeletedById");
 
-                    b.ToTable("Merchants", (string)null);
+                    b.ToTable("Merchants");
                 });
 
             modelBuilder.Entity("FlavorTalk.Domain.Entities.Plate", b =>
@@ -138,7 +141,7 @@ namespace FlavorTalk.Infrastructure.Migrations
 
                     b.HasIndex("DeletedById");
 
-                    b.ToTable("Plates", (string)null);
+                    b.ToTable("Plates");
                 });
 
             modelBuilder.Entity("FlavorTalk.Domain.Entities.Review", b =>
@@ -474,7 +477,7 @@ namespace FlavorTalk.Infrastructure.Migrations
 
                             b1.HasKey("MerchantId");
 
-                            b1.ToTable("Merchants", (string)null);
+                            b1.ToTable("Merchants");
 
                             b1.WithOwner()
                                 .HasForeignKey("MerchantId");
