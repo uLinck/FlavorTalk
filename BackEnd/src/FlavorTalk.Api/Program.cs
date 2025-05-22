@@ -1,6 +1,6 @@
 using FlavorTalk.Api.Configs;
 using FlavorTalk.Api.Extensions;
-using FlavorTalk.Shared.GenericControllersStuff;
+using FlavorTalk.Shared;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,13 +30,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-var endpointDataSources = app.Services.GetRequiredService<IEnumerable<EndpointDataSource>>();
-foreach (var dataSource in endpointDataSources)
-{
-    foreach (var endpoint in dataSource.Endpoints)
-    {
-        Console.WriteLine($"[ENDPOINT] {endpoint.DisplayName}");
-    }
-}
+app.MapCommandEndpoints(typeof(FlavorTalk.Core.Setup).Assembly);
 
 app.Run();

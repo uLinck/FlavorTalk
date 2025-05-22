@@ -2,7 +2,6 @@
 using Microsoft.OpenApi.Models;
 using FlavorTalk.Shared.Extensions;
 using FlavorTalk.Api.Extensions;
-using FlavorTalk.Shared.GenericControllersStuff;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace FlavorTalk.Api.Configs;
@@ -12,8 +11,7 @@ public static class ControllerConfigs
     public static WebApplicationBuilder AddControllerConfigs(this WebApplicationBuilder builder)
     {
         builder.Services
-            .AddControllers(options => options.Filters.Add<HttpResponseFilter>())
-            .AddGenericControllers(typeof(Core.Setup).Assembly);
+            .AddControllers(options => options.Filters.Add<HttpResponseFilter>());
 
         builder.Services.AddSwaggerGen(c =>
         {
@@ -40,23 +38,10 @@ public static class ControllerConfigs
             }});
             c.CustomSchemaIds(type => type.ToString().Replace("+", "."));
             c.MapType<TimeSpan>(() => new OpenApiSchema { Type = "string", Format = "time-span" });
-            c.ConfigureSwaggerForGenericControllers();
-            c.DocumentFilter<DebugAllPathsFilter>();
         });
 
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
         return builder;
-    }
-
-    public class DebugAllPathsFilter : IDocumentFilter
-    {
-        public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
-        {
-            foreach (var path in swaggerDoc.Paths)
-            {
-                Console.WriteLine($"[Swagger] Path registrado: {path.Key}");
-            }
-        }
     }
 }

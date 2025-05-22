@@ -1,6 +1,5 @@
 ﻿using FlavorTalk.Core.Features.Auth.Commands;
 using FlavorTalk.Shared.Extensions;
-using FlavorTalk.Shared.GenericControllersStuff;
 using Microsoft.AspNetCore.Mvc;
 using Wolverine;
 
