@@ -1,4 +1,7 @@
 using FlavorTalk.Api.Configs;
+using FlavorTalk.Api.Extensions;
+using FlavorTalk.Shared.GenericControllersStuff;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,5 +29,14 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+var endpointDataSources = app.Services.GetRequiredService<IEnumerable<EndpointDataSource>>();
+foreach (var dataSource in endpointDataSources)
+{
+    foreach (var endpoint in dataSource.Endpoints)
+    {
+        Console.WriteLine($"[ENDPOINT] {endpoint.DisplayName}");
+    }
+}
 
 app.Run();

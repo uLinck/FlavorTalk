@@ -1,7 +1,7 @@
 ﻿using FluentResults;
 using Wolverine;
 
-namespace FlavorTalk.Api.Extensions;
+namespace FlavorTalk.Shared.Extensions;
 
 public static class WolverineExtensions
 {

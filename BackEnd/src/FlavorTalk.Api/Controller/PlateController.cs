@@ -1,6 +1,6 @@
-﻿using FlavorTalk.Api.Extensions;
-using FlavorTalk.Core.Features.Catalogs.Commands;
-using FlavorTalk.Core.Features.Plates.Commands;
+﻿using FlavorTalk.Core.Features.Plates.Commands;
+using FlavorTalk.Shared.Extensions;
+using FlavorTalk.Shared.GenericControllersStuff;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Wolverine;

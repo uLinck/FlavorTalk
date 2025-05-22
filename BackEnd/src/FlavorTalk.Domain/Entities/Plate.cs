@@ -14,7 +14,7 @@ public class Plate : BaseEntity
     public string Name { get; private set; }
     public string? Description { get; private set;}
     //TODO: Add Reviews
-    public float? RatingAverage { get; }
+    public float? RatingAverage { get; private set; }
 
     public void Update(string name, string? description)
     {

@@ -5,7 +5,7 @@ using FlavorTalk.Shared.Extensions;
 using FluentResults;
 using FluentValidation;
 
-namespace FlavorTalk.Core.Features.Catalogs.Commands;
+namespace FlavorTalk.Core.Features.Plates.Commands;
 public static class CreatePlate
 {
     public record Command(string Name, string Description, Guid? CategoryId, Guid MerchantId)

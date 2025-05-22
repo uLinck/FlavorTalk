@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Wolverine;
 
-namespace FlavorTalk.Api.Controller;
+namespace FlavorTalk.Shared.GenericControllersStuff;
 
 [ApiController]
 [Route("api/v1/[controller]")]
