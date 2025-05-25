@@ -1,6 +1,6 @@
 using FlavorTalk.Api.Configs;
 using FlavorTalk.Api.Extensions;
-using FlavorTalk.Shared;
+using FlavorTalk.Shared.Extensions;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
