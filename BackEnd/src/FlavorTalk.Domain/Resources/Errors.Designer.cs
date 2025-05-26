@@ -88,6 +88,15 @@ namespace FlavorTalk.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plate not found.
+        /// </summary>
+        public static string PlateNotFound {
+            get {
+                return ResourceManager.GetString("PlateNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User not found.
         /// </summary>
         public static string UserNotFound {

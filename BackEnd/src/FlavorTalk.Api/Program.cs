@@ -1,4 +1,7 @@
 using FlavorTalk.Api.Configs;
+using FlavorTalk.Api.Extensions;
+using FlavorTalk.Shared.Extensions;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,5 +29,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapCommandEndpoints(typeof(FlavorTalk.Core.Setup).Assembly);
 
 app.Run();

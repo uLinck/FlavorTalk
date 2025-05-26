@@ -8,8 +8,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using FlavorTalk.Domain.Entities;
+using FlavorTalk.Shared.Attributes;
+using FlavorTalk.Shared.Models;
 
 namespace FlavorTalk.Core.Features.Auth.Commands;
+
+[Endpoint(EndpointMethod.POST)]
 public static class GenerateToken
 {
     public record Command(string Email, string Password)

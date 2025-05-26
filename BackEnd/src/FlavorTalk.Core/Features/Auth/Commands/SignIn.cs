@@ -1,10 +1,14 @@
 ﻿using FlavorTalk.Domain.Entities;
 using FlavorTalk.Domain.Resources;
+using FlavorTalk.Shared.Attributes;
+using FlavorTalk.Shared.Models;
 using FluentResults;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 
 namespace FlavorTalk.Core.Features.Auth.Commands;
+
+[Endpoint(EndpointMethod.POST, requiresAuth: false)]
 public static class SignIn
 {
     public record Command(string Email, string Password, bool RememberMe) 

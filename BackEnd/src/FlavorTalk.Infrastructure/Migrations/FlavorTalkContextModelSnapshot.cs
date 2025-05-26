@@ -38,7 +38,7 @@ namespace FlavorTalk.Infrastructure.Migrations
 
                     b.HasIndex("DeletedById");
 
-                    b.ToTable("Catalogs");
+                    b.ToTable("Catalogs", (string)null);
                 });
 
             modelBuilder.Entity("FlavorTalk.Domain.Entities.Category", b =>
@@ -66,7 +66,7 @@ namespace FlavorTalk.Infrastructure.Migrations
 
                     b.HasIndex("DeletedById");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("FlavorTalk.Domain.Entities.Merchant", b =>
@@ -104,7 +104,7 @@ namespace FlavorTalk.Infrastructure.Migrations
 
                     b.HasIndex("DeletedById");
 
-                    b.ToTable("Merchants");
+                    b.ToTable("Merchants", (string)null);
                 });
 
             modelBuilder.Entity("FlavorTalk.Domain.Entities.Plate", b =>
@@ -138,7 +138,7 @@ namespace FlavorTalk.Infrastructure.Migrations
 
                     b.HasIndex("DeletedById");
 
-                    b.ToTable("Plates");
+                    b.ToTable("Plates", (string)null);
                 });
 
             modelBuilder.Entity("FlavorTalk.Domain.Entities.Review", b =>
@@ -474,7 +474,7 @@ namespace FlavorTalk.Infrastructure.Migrations
 
                             b1.HasKey("MerchantId");
 
-                            b1.ToTable("Merchants");
+                            b1.ToTable("Merchants", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("MerchantId");

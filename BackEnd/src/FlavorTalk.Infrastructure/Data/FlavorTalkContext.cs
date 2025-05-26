@@ -43,6 +43,4 @@ public class FlavorTalkContext : IdentityDbContext<User, Role, Guid>
             .ForEach(sde => modelBuilder.Entity(sde)
                 .HasKey(nameof(BaseEntity.Id)));
     }
-
-
 }

@@ -1,5 +1,8 @@
 ﻿using FlavorTalk.Api.Configs.Filters;
 using Microsoft.OpenApi.Models;
+using FlavorTalk.Shared.Extensions;
+using FlavorTalk.Api.Extensions;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace FlavorTalk.Api.Configs;
 
@@ -7,7 +10,8 @@ public static class ControllerConfigs
 {
     public static WebApplicationBuilder AddControllerConfigs(this WebApplicationBuilder builder)
     {
-        builder.Services.AddControllers(options => options.Filters.Add<HttpResponseFilter>());
+        builder.Services
+            .AddControllers(options => options.Filters.Add<HttpResponseFilter>());
 
         builder.Services.AddSwaggerGen(c =>
         {

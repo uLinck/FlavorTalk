@@ -1,11 +1,15 @@
 ﻿using FlavorTalk.Domain.Entities;
 using FlavorTalk.Domain.Resources;
 using FlavorTalk.Infrastructure.Data;
+using FlavorTalk.Shared.Attributes;
 using FlavorTalk.Shared.Extensions;
+using FlavorTalk.Shared.Models;
 using FluentResults;
 using FluentValidation;
 
-namespace FlavorTalk.Core.Features.Catalogs.Commands;
+namespace FlavorTalk.Core.Features.Plates.Commands;
+
+[Endpoint(EndpointMethod.POST, "plates")]
 public static class CreatePlate
 {
     public record Command(string Name, string Description, Guid? CategoryId, Guid MerchantId)
@@ -15,20 +19,16 @@ public static class CreatePlate
             public Validator()
             {
                 RuleFor(x => x.Name)
-                    .NotNull()
                     .NotEmpty();
 
                 RuleFor(x => x.Description)
-                    .NotNull()
                     .NotEmpty();
 
                 RuleFor(x => x.MerchantId)
-                    .NotNull()
                     .NotEmpty();
             }
         }
     }
-
 
     public record Response(Guid PlateId);
 

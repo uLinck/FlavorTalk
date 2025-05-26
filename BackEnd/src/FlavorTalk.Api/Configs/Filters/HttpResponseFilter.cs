@@ -1,16 +1,10 @@
-﻿using FluentResults;
+﻿using FlavorTalk.Shared;
+using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Text.Json;
 
 namespace FlavorTalk.Api.Configs.Filters;
-
-public class HttpResponse<T> where T : class
-{
-    public T? Data { get; set; }
-    public List<string> Errors { get; set; } = [];
-    public List<string> Reasons { get; set; } = [];
-}
 
 public class HttpResponseFilter : IAsyncResultFilter
 {
