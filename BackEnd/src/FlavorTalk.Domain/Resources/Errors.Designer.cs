@@ -61,11 +61,20 @@ namespace FlavorTalk.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Categories must have Unique name.
+        ///   Looks up a localized string similar to Categories must have Unique name..
         /// </summary>
         public static string CategoriesMusHaveUniqueName {
             get {
                 return ResourceManager.GetString("CategoriesMusHaveUniqueName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category not found..
+        /// </summary>
+        public static string CategoryNotFound {
+            get {
+                return ResourceManager.GetString("CategoryNotFound", resourceCulture);
             }
         }
         
@@ -79,7 +88,7 @@ namespace FlavorTalk.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Merchant not found.
+        ///   Looks up a localized string similar to Merchant not found..
         /// </summary>
         public static string MerchantNotFound {
             get {
@@ -88,7 +97,7 @@ namespace FlavorTalk.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Plate not found.
+        ///   Looks up a localized string similar to Plate not found..
         /// </summary>
         public static string PlateNotFound {
             get {
@@ -97,7 +106,7 @@ namespace FlavorTalk.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User not found.
+        ///   Looks up a localized string similar to User not found..
         /// </summary>
         public static string UserNotFound {
             get {
