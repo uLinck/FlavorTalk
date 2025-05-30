@@ -11,16 +11,13 @@ namespace FlavorTalk.Core.Features.CategoryService.Commands;
 [Endpoint(EndpointMethod.POST, "categories")]
 public static class CreateCategory
 {
-    public record Command(string Name, List<Guid> PlateIds, Guid MerchantId)
+    public record Command(string Name, List<Guid>? PlateIds, Guid MerchantId)
     {
         public class Validator : AbstractValidator<Command>
         {
             public Validator()
             {
                 RuleFor(x => x.Name)
-                    .NotEmpty();
-
-                RuleFor(x => x.PlateIds)
                     .NotEmpty();
 
                 RuleFor(x => x.MerchantId)
@@ -40,12 +37,17 @@ public static class CreateCategory
             if (merchant is null)
                 return Result.Fail(Errors.MerchantNotFound);
 
-            var plates = await context.Plates
-                .Where(p => command.PlateIds.Contains(p.Id))
-                .ToListAsync();
+            var plates = new List<Plate>();
+            
+            if (command.PlateIds?.Any() == true)
+            {
+                plates = await context.Plates
+                    .Where(p => command.PlateIds.Contains(p.Id))
+                    .ToListAsync();
 
-            if (!plates.Any() || plates.Count != command.PlateIds.Count)
-                return Result.Fail(Errors.PlateNotFound);
+                if (plates.Count != command.PlateIds.Count)
+                    return Result.Fail(Errors.PlateNotFound);
+            }
 
             var category = new Category(command.Name, plates);
 
