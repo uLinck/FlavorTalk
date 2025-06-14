@@ -4,6 +4,7 @@ using FluentResults;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using System.Reflection;
+using System.Text.Json;
 using Wolverine;
 
 namespace FlavorTalk.Shared.Extensions;
@@ -157,18 +158,28 @@ public static class MinimalApiExtensions
         }
     }
 
-    // Rest of your existing methods (CreateHandler, etc.) remain the same
     private static Delegate CreateHandler(Type requestType, Type responseType)
     {
         return async (HttpContext context, IMessageBus messageBus) =>
         {
             try
             {
-                var request = await context.Request.ReadFromJsonAsync(requestType);
+                object? request = null;
+
+                // Handle GET requests (typically queries) - get data from route and query string
+                if (context.Request.Method.Equals("GET", StringComparison.OrdinalIgnoreCase))
+                {
+                    request = CreateRequestFromRouteAndQuery(requestType, context);
+                }
+                else
+                {
+                    // Handle POST, PUT, PATCH, DELETE - combine JSON body with route parameters
+                    request = await CreateRequestFromBodyAndRoute(requestType, context);
+                }
 
                 if (request == null)
                 {
-                    return CreateErrorResponse(typeof(object), ["Invalid request body"], [], 400);
+                    return CreateErrorResponse(typeof(object), ["Invalid request data"], [], 400);
                 }
 
                 var trySendMethod = typeof(WolverineExtensions)
@@ -188,6 +199,245 @@ public static class MinimalApiExtensions
                 return CreateErrorResponse(typeof(object), ["An unexpected error occurred"], [ex.Message], 500);
             }
         };
+    }
+
+    private static object? CreateRequestFromRouteAndQuery(Type requestType, HttpContext context)
+    {
+        // Get constructor parameters for records
+        var constructors = requestType.GetConstructors();
+        var primaryConstructor = constructors.OrderByDescending(c => c.GetParameters().Length).First();
+        var constructorParams = primaryConstructor.GetParameters();
+
+        var parameterValues = new object?[constructorParams.Length];
+
+        // Fill constructor parameters from route and query values
+        for (int i = 0; i < constructorParams.Length; i++)
+        {
+            var param = constructorParams[i];
+            var paramName = param.Name!;
+
+            // Try route values first
+            var routeValue = context.Request.RouteValues
+                .FirstOrDefault(rv => string.Equals(rv.Key, paramName, StringComparison.OrdinalIgnoreCase));
+
+            if (routeValue.Key != null && routeValue.Value != null)
+            {
+                parameterValues[i] = ConvertValue(routeValue.Value.ToString()!, param.ParameterType);
+            }
+            else
+            {
+                // Try query string values
+                var queryValue = context.Request.Query
+                    .FirstOrDefault(q => string.Equals(q.Key, paramName, StringComparison.OrdinalIgnoreCase));
+
+                if (queryValue.Key != null && queryValue.Value.Count > 0)
+                {
+                    var value = queryValue.Value.First();
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        parameterValues[i] = ConvertValue(value, param.ParameterType);
+                    }
+                }
+                else
+                {
+                    // Use default value if parameter has one, otherwise null/default
+                    if (param.HasDefaultValue)
+                    {
+                        parameterValues[i] = param.DefaultValue;
+                    }
+                    else if (param.ParameterType.IsValueType && Nullable.GetUnderlyingType(param.ParameterType) == null)
+                    {
+                        parameterValues[i] = Activator.CreateInstance(param.ParameterType);
+                    }
+                    else
+                    {
+                        parameterValues[i] = null;
+                    }
+                }
+            }
+        }
+
+        return Activator.CreateInstance(requestType, parameterValues);
+    }
+
+    private static async Task<object?> CreateRequestFromBodyAndRoute(Type requestType, HttpContext context)
+    {
+        object? request = null;
+
+        // Try to read from JSON body first
+        if (context.Request.ContentLength > 0 &&
+            context.Request.ContentType?.Contains("application/json") == true)
+        {
+            request = await context.Request.ReadFromJsonAsync(requestType);
+        }
+
+        // If we got a request from JSON and have route parameters, we need to create a new instance
+        // with the route parameters overriding the JSON values
+        if (context.Request.RouteValues.Any())
+        {
+            request = CreateRequestWithRouteOverrides(requestType, request, context);
+        }
+        // If no JSON body, create from route parameters only
+        else if (request == null)
+        {
+            request = CreateRequestFromRouteParameters(requestType, context);
+        }
+
+        return request;
+    }
+
+    private static object? CreateRequestWithRouteOverrides(Type requestType, object? existingRequest, HttpContext context)
+    {
+        var constructors = requestType.GetConstructors();
+        var primaryConstructor = constructors.OrderByDescending(c => c.GetParameters().Length).First();
+        var constructorParams = primaryConstructor.GetParameters();
+
+        var parameterValues = new object?[constructorParams.Length];
+
+        // Fill constructor parameters
+        for (int i = 0; i < constructorParams.Length; i++)
+        {
+            var param = constructorParams[i];
+            var paramName = param.Name!;
+
+            // Check if this parameter should be overridden by route value
+            var routeValue = context.Request.RouteValues
+                .FirstOrDefault(rv => string.Equals(rv.Key, paramName, StringComparison.OrdinalIgnoreCase));
+
+            if (routeValue.Key != null && routeValue.Value != null)
+            {
+                // Override with route value
+                parameterValues[i] = ConvertValue(routeValue.Value.ToString()!, param.ParameterType);
+            }
+            else if (existingRequest != null)
+            {
+                // Use value from existing request (JSON body)
+                var property = requestType.GetProperty(param.Name!, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
+                parameterValues[i] = property?.GetValue(existingRequest);
+            }
+            else
+            {
+                // Use default value
+                if (param.HasDefaultValue)
+                {
+                    parameterValues[i] = param.DefaultValue;
+                }
+                else if (param.ParameterType.IsValueType && Nullable.GetUnderlyingType(param.ParameterType) == null)
+                {
+                    parameterValues[i] = Activator.CreateInstance(param.ParameterType);
+                }
+                else
+                {
+                    parameterValues[i] = null;
+                }
+            }
+        }
+
+        return Activator.CreateInstance(requestType, parameterValues);
+    }
+
+    private static object? CreateRequestFromRouteParameters(Type requestType, HttpContext context)
+    {
+        var constructors = requestType.GetConstructors();
+        var primaryConstructor = constructors.OrderByDescending(c => c.GetParameters().Length).First();
+        var constructorParams = primaryConstructor.GetParameters();
+
+        var parameterValues = new object?[constructorParams.Length];
+
+        for (int i = 0; i < constructorParams.Length; i++)
+        {
+            var param = constructorParams[i];
+            var paramName = param.Name!;
+
+            var routeValue = context.Request.RouteValues
+                .FirstOrDefault(rv => string.Equals(rv.Key, paramName, StringComparison.OrdinalIgnoreCase));
+
+            if (routeValue.Key != null && routeValue.Value != null)
+            {
+                parameterValues[i] = ConvertValue(routeValue.Value.ToString()!, param.ParameterType);
+            }
+            else
+            {
+                if (param.HasDefaultValue)
+                {
+                    parameterValues[i] = param.DefaultValue;
+                }
+                else if (param.ParameterType.IsValueType && Nullable.GetUnderlyingType(param.ParameterType) == null)
+                {
+                    parameterValues[i] = Activator.CreateInstance(param.ParameterType);
+                }
+                else
+                {
+                    parameterValues[i] = null;
+                }
+            }
+        }
+
+        return Activator.CreateInstance(requestType, parameterValues);
+    }
+
+    private static object? ConvertValue(string value, Type targetType)
+    {
+        if (string.IsNullOrEmpty(value))
+            return null;
+
+        // Handle nullable types
+        var actualType = Nullable.GetUnderlyingType(targetType) ?? targetType;
+
+        try
+        {
+            if (actualType == typeof(Guid))
+            {
+                return Guid.Parse(value);
+            }
+            else if (actualType == typeof(int))
+            {
+                return int.Parse(value);
+            }
+            else if (actualType == typeof(long))
+            {
+                return long.Parse(value);
+            }
+            else if (actualType == typeof(decimal))
+            {
+                return decimal.Parse(value);
+            }
+            else if (actualType == typeof(double))
+            {
+                return double.Parse(value);
+            }
+            else if (actualType == typeof(float))
+            {
+                return float.Parse(value);
+            }
+            else if (actualType == typeof(bool))
+            {
+                return bool.Parse(value);
+            }
+            else if (actualType == typeof(DateTime))
+            {
+                return DateTime.Parse(value);
+            }
+            else if (actualType == typeof(DateTimeOffset))
+            {
+                return DateTimeOffset.Parse(value);
+            }
+            else if (actualType.IsEnum)
+            {
+                return Enum.Parse(actualType, value, true);
+            }
+            else
+            {
+                return Convert.ChangeType(value, actualType);
+            }
+        }
+        catch
+        {
+            // If conversion fails, return null for nullable types or default for value types
+            return targetType.IsValueType && Nullable.GetUnderlyingType(targetType) == null
+                ? Activator.CreateInstance(targetType)
+                : null;
+        }
     }
 
     private static IResult HandleResultWithWrapper(object? result, Type responseType)

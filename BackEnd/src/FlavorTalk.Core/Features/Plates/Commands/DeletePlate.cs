@@ -4,7 +4,6 @@ using FlavorTalk.Shared.Attributes;
 using FlavorTalk.Shared.Models;
 using FluentResults;
 using FluentValidation;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +12,16 @@ using System.Threading.Tasks;
 
 namespace FlavorTalk.Core.Features.Plates.Commands;
 
-[Endpoint(EndpointMethod.PUT, "plates/{plateId}")]
-public static class UpdatePlate
+[Endpoint(EndpointMethod.DELETE, "plates/{plateId}")]
+public static class DeletePlate
 {
-    public record Command(Guid PlateId, string Name, string? Description)
+    public record Command(Guid PlateId)
     {
         public class Validator : AbstractValidator<Command>
         {
             public Validator()
             {
                 RuleFor(x => x.PlateId)
-                    .NotEmpty();
-
-                RuleFor(x => x.Name)
                     .NotEmpty();
             }
         }
@@ -39,13 +35,12 @@ public static class UpdatePlate
         {
             var plate = await context.Plates.FindAsync(command.PlateId);
 
-            if (plate is null) return Result.Fail(Errors.PlateNotFound);
+            if (plate is null)
+                return Result.Fail(Errors.PlateNotFound);
 
-            plate.Update(command.Name, command.Description);
-
+            plate.Delete();
             await context.SaveChangesAsync();
-
             return Result.Ok(new Response(plate.Id));
         }
-    }
+    } 
 }
