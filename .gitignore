@@ -359,7 +359,10 @@ BackEnd/MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 BackEnd/.ionide/
 
-# Flutter/Dart related
+# ==============================================
+# FLUTTER/DART SPECIFIC - ENHANCED SECTION
+# ==============================================
+
 # Miscellaneous
 FrontEnd/flavortalk_app/*.class
 FrontEnd/flavortalk_app/*.log
@@ -367,7 +370,6 @@ FrontEnd/flavortalk_app/*.pyc
 FrontEnd/flavortalk_app/*.swp
 FrontEnd/flavortalk_app/.DS_Store
 FrontEnd/flavortalk_app/.atom/
-FrontEnd/flavortalk_app/.build/
 FrontEnd/flavortalk_app/.buildlog/
 FrontEnd/flavortalk_app/.history
 FrontEnd/flavortalk_app/.svn/
@@ -383,27 +385,118 @@ FrontEnd/flavortalk_app/.idea/
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
-#.vscode/
+#FrontEnd/flavortalk_app/.vscode/
 
-# Flutter/Dart
+# Flutter/Dart/Pub related
 FrontEnd/flavortalk_app/.dart_tool/
 FrontEnd/flavortalk_app/.flutter-plugins
 FrontEnd/flavortalk_app/.flutter-plugins-dependencies
+FrontEnd/flavortalk_app/.fvm/
+FrontEnd/flavortalk_app/.packages
 FrontEnd/flavortalk_app/.pub-cache/
 FrontEnd/flavortalk_app/.pub/
+FrontEnd/flavortalk_app/.pubspec.lock.bak
+FrontEnd/flavortalk_app/pubspec.lock
 FrontEnd/flavortalk_app/build/
+FrontEnd/flavortalk_app/.build/
 
-# Docs (se você gerar com dart doc)
+# Web related
+FrontEnd/flavortalk_app/web/.dart_tool/
+FrontEnd/flavortalk_app/web/build/
+
+# Coverage
+FrontEnd/flavortalk_app/coverage/
+FrontEnd/flavortalk_app/test/.test_coverage.dart
+
+# Docs (generated with dart doc)
 FrontEnd/flavortalk_app/doc/api/
 
-# Flutter iOS
+# Flutter iOS specific
 FrontEnd/flavortalk_app/ios/Flutter/.last_build_id
+FrontEnd/flavortalk_app/ios/Flutter/Generated.xcconfig
+FrontEnd/flavortalk_app/ios/Flutter/app.flx
+FrontEnd/flavortalk_app/ios/Flutter/app.zip
+FrontEnd/flavortalk_app/ios/Flutter/flutter_assets/
+FrontEnd/flavortalk_app/ios/ServiceDefinitions.json
+FrontEnd/flavortalk_app/ios/Runner/GeneratedPluginRegistrant.*
+FrontEnd/flavortalk_app/ios/.symlinks/
+FrontEnd/flavortalk_app/ios/Pods/
+FrontEnd/flavortalk_app/ios/Podfile.lock
+FrontEnd/flavortalk_app/ios/.generated/
+
+# Flutter Android specific
+FrontEnd/flavortalk_app/android/app/debug/
+FrontEnd/flavortalk_app/android/app/profile/
+FrontEnd/flavortalk_app/android/app/release/
+FrontEnd/flavortalk_app/android/.gradle/
+FrontEnd/flavortalk_app/android/gradle/
+FrontEnd/flavortalk_app/android/gradlew
+FrontEnd/flavortalk_app/android/gradlew.bat
+FrontEnd/flavortalk_app/android/local.properties
+FrontEnd/flavortalk_app/android/key.properties
+FrontEnd/flavortalk_app/android/**/*.iml
+FrontEnd/flavortalk_app/android/.idea/
+FrontEnd/flavortalk_app/android/app/src/main/java/**/GeneratedPluginRegistrant.java
+FrontEnd/flavortalk_app/android/.settings/
+FrontEnd/flavortalk_app/android/.project
+FrontEnd/flavortalk_app/android/.classpath
+
+# Flutter macOS specific
+FrontEnd/flavortalk_app/macos/Flutter/ephemeral/
+FrontEnd/flavortalk_app/macos/Flutter/GeneratedPluginRegistrant.swift
+FrontEnd/flavortalk_app/macos/Pods/
+FrontEnd/flavortalk_app/macos/Podfile.lock
+FrontEnd/flavortalk_app/macos/.symlinks/
+
+# Flutter Windows specific
+FrontEnd/flavortalk_app/windows/flutter/generated_plugin_registrant.cc
+FrontEnd/flavortalk_app/windows/flutter/generated_plugin_registrant.h
+FrontEnd/flavortalk_app/windows/flutter/ephemeral/
+
+# Flutter Linux specific
+FrontEnd/flavortalk_app/linux/flutter/generated_plugin_registrant.cc
+FrontEnd/flavortalk_app/linux/flutter/generated_plugin_registrant.h
+FrontEnd/flavortalk_app/linux/flutter/ephemeral/
 
 # Obfuscation & symbolication
 FrontEnd/flavortalk_app/app.*.symbols
 FrontEnd/flavortalk_app/app.*.map.json
 
-# Android build outputs
-FrontEnd/flavortalk_app/android/app/debug/
-FrontEnd/flavortalk_app/android/app/profile/
-FrontEnd/flavortalk_app/android/app/release/
+# Exceptions to above rules
+!FrontEnd/flavortalk_app/ios/Flutter/Generated.xcconfig
+!FrontEnd/flavortalk_app/ios/Flutter/flutter_export_environment.sh
+
+# Firebase (if using Firebase)
+FrontEnd/flavortalk_app/ios/firebase_app_id_file.json
+FrontEnd/flavortalk_app/android/app/google-services.json
+FrontEnd/flavortalk_app/lib/firebase_options.dart
+
+# Environment files (often contain API keys)
+FrontEnd/flavortalk_app/.env
+FrontEnd/flavortalk_app/.env.local
+FrontEnd/flavortalk_app/.env.*.local
+
+# Flutter version manager files
+FrontEnd/flavortalk_app/.fvmrc
+FrontEnd/flavortalk_app/.flutter-version
+
+# Generated files
+FrontEnd/flavortalk_app/lib/generated/
+FrontEnd/flavortalk_app/lib/**/*.g.dart
+FrontEnd/flavortalk_app/lib/**/*.freezed.dart
+FrontEnd/flavortalk_app/lib/**/*.gr.dart
+FrontEnd/flavortalk_app/lib/**/*.chopper.dart
+FrontEnd/flavortalk_app/lib/**/*.config.dart
+
+# Translation files (if using international, uncomment if needed)
+# FrontEnd/flavortalk_app/lib/l10n/*.arb
+
+# Fastlane (for iOS/Android deployment)
+FrontEnd/flavortalk_app/ios/fastlane/report.xml
+FrontEnd/flavortalk_app/ios/fastlane/Preview.html
+FrontEnd/flavortalk_app/android/fastlane/report.xml
+FrontEnd/flavortalk_app/android/fastlane/Preview.html
+
+# Platform-specific temporary files
+FrontEnd/flavortalk_app/**/.DS_Store
+FrontEnd/flavortalk_app/**/Thumbs.db
