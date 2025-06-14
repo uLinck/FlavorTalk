@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace FlavorTalk.Core.Features.Plates.Commands;
 
-[Endpoint(EndpointMethod.PUT, "plates")]
+[Endpoint(EndpointMethod.PUT, "plates/{plateId}")]
 public static class UpdatePlate
 {
     public record Command(Guid PlateId, string Name, string? Description)

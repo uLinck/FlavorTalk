@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FlavorTalk.Core.Features.Plates.Commands;
 
-[Endpoint(EndpointMethod.DELETE, "plates")]
+[Endpoint(EndpointMethod.DELETE, "plates/{plateId}")]
 public static class DeletePlate
 {
     public record Command(Guid PlateId)
