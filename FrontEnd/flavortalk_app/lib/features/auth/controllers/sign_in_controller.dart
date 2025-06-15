@@ -1,4 +1,5 @@
 import 'package:flavortalk_app/clients/flavor_talk/flavor_talk_client.dart';
+import 'package:flavortalk_app/clients/flavor_talk/models/auth/sign_in_request.dart';
 import 'package:flavortalk_app/features/auth/models/sign_in_state.dart';
 import 'package:flavortalk_app/routes.dart';
 import 'package:flutter/widgets.dart';
@@ -18,8 +19,7 @@ class SignInController extends StateNotifier<SignInState> {
     state = state.copyWith(isLoading: true);
     try {
       final user = await flavorTalkClient.auth.signInAsync(
-        state.email,
-        state.password,
+        SignInRequest(email: state.email, password: state.password),
       );
 
       if (user == null) {
