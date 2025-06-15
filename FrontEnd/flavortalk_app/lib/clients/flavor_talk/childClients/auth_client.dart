@@ -1,14 +1,13 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flavortalk_app/clients/flavor_talk/models/response.dart';
+import 'package:flavortalk_app/clients/flavor_talk/models/api_response.dart';
 import 'package:flavortalk_app/clients/flavor_talk/models/user/user.dart';
 import 'package:flavortalk_app/extensions/dio_extensions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthClient {
-  AuthClient(Dio dio)
-    : _dio = dio;
+  AuthClient(Dio dio) : _dio = dio;
 
   final Dio _dio;
   final SharedPreferencesAsync _prefs = SharedPreferencesAsync();
@@ -19,11 +18,8 @@ class AuthClient {
   Future<User?> signInAsync(String email, String password) async {
     final response = await _dio.post<ApiResponse>(
       '/auth/signin',
-      options:  Options(contentType: Headers.jsonContentType),
-      data: jsonEncode(<String, String>{
-        'email': email,
-        'password': password,
-      })
+      options: Options(contentType: Headers.jsonContentType),
+      data: jsonEncode(<String, String>{'email': email, 'password': password}),
     );
 
     if (!response.isSuccess) return null;
@@ -32,5 +28,21 @@ class AuthClient {
     await _prefs.setString('user', dataJson);
 
     return User.fromJson(response.apiData!);
+  }
+
+  Future<User?> signUpAsync(String name, String email, String password) async {
+    final response = await _dio.post<ApiResponse>(
+      '/auth/signup',
+      options: Options(contentType: Headers.jsonContentType),
+      data: jsonEncode(<String, String>{
+        'name': name,
+        'email': email,
+        'password': password,
+      }),
+    );
+
+    if (!response.isSuccess) return null;
+
+    return signInAsync(email, password);
   }
 }

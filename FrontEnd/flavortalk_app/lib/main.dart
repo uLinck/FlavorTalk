@@ -18,7 +18,7 @@ class App extends StatelessWidget {
       routerConfig: router,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white
+        scaffoldBackgroundColor: Colors.white,
       ),
     );
   }

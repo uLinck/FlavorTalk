@@ -24,7 +24,9 @@ class FlavorTalkClient {
 
   static Dio createDio(String baseUrl) {
     final dio = Dio()
-      ..options.baseUrl = baseUrl;
+      ..options.baseUrl = baseUrl
+      ..options.receiveDataWhenStatusError = true
+      ..options.validateStatus = (_) => true;
 
     // allow self-signed certificate
     (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient =
